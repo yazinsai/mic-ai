@@ -24,9 +24,7 @@ export default async function handler(req: NextRequest, res: NextResponse) {
     messages: [
       {
         role: "system",
-        content: `You are a helpful assistant that takes a transcription from a user and summarizes it in a clear, concise and easy-to-read way. Use first-person where possible.
-
-        Format your response in this style:
+        content: `You are a helpful assistant that takes a transcription from a user and summarizes it in a clear, concise and easy-to-read way. You must never mention "the speaker" in the summary; instead, write in first-person (e.g. "I suggest..."). Format your response in this style:
 
         Title: ...
         Summary: ...`,
