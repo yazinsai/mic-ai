@@ -300,41 +300,41 @@ function MetaTags() {
   return (
     <Head>
       <head>
-        <title>Capture Ideas Effortlessly with Mic.ai</title>
+        <title>Capture Ideas Effortlessly with Mic AI</title>
         <meta
           name="description"
-          content="Transform your audio notes into concise summaries with Mic.ai - streamlining your thought process and enabling better decision-making."
+          content="Transform your audio notes into concise summaries with Mic AI - streamlining your thought process and enabling better decision-making."
         />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <meta
           property="og:title"
-          content="Capture Ideas Effortlessly with Mic.ai"
+          content="Capture Ideas Effortlessly with Mic AI"
         />
         <meta
           property="og:description"
-          content="Transform your audio notes into concise summaries with Mic.ai - streamlining your thought process and enabling better decision-making."
+          content="Transform your audio notes into concise summaries with Mic AI - streamlining your thought process and enabling better decision-making."
         />
         <meta
           property="og:image"
-          content="https://mic.ai/path/to/your/og-image.jpg"
+          content="https://mic-ai.vercel.app/meta.png"
         />
-        <meta property="og:url" content="https://mic.ai" />
+        <meta property="og:url" content="https://mic-ai.vercel.app" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Capture Ideas Effortlessly with Mic.ai"
+          content="Capture Ideas Effortlessly with Mic AI"
         />
         <meta
           name="twitter:description"
-          content="Transform your audio notes into concise summaries with Mic.ai - streamlining your thought process and enabling better decision-making."
+          content="Transform your audio notes into concise summaries with Mic AI - streamlining your thought process and enabling better decision-making."
         />
         <meta
           name="twitter:image"
-          content="https://mic.ai/path/to/your/twitter-image.jpg"
+          content="https://mic-ai.vercel.app/meta.png"
         />
       </head>
     </Head>
