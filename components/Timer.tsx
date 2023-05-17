@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
-import { Montserrat } from "next/font/google";
-const montserrat = Montserrat({ weight: "400", subsets: ["latin"] });
+import { Inter } from "next/font/google";
+const inter = Inter({ weight: "400", subsets: ["latin"] });
 
 interface Props {
   onCancel: () => void;
@@ -35,7 +35,7 @@ export const Timer: FC<Props> = ({ onCancel }) => {
       <div
         className={classNames(
           "text-4xl text-slate-600 tracking-wide",
-          montserrat.className
+          inter.className
         )}
       >
         {formatTime(minutes)}:{formatTime(remainingSeconds)}

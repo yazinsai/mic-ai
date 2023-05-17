@@ -1,5 +1,5 @@
 import React from "react";
-import { Montserrat, Inter } from "next/font/google";
+import { Inter, Roboto } from "next/font/google";
 import { RecordingButton } from "@/components/RecordingButton";
 import { Timer } from "@/components/Timer";
 import { Upload } from "upload-js";
@@ -7,11 +7,13 @@ import {
   ClipboardIcon,
   MicrophoneIcon,
   RocketLaunchIcon,
+  LockClosedIcon,
 } from "@heroicons/react/20/solid";
 import copy from "copy-text-to-clipboard";
+import Head from "next/head";
 
-const montserrat = Montserrat({ weight: "500", subsets: ["latin"] });
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ weight: "400", subsets: ["latin"] });
+const inter = Inter({ weight: "700", subsets: ["latin"] });
 
 const upload = Upload({
   apiKey: process.env.NEXT_PUBLIC_UPLOAD_IO_KEY ?? "free",
@@ -114,17 +116,18 @@ export default function Home() {
     <main
       className={classNames(
         "p-4 flex flex-col justify-between h-[100dvh] max-w-md mx-auto",
-        inter.className
+        roboto.className
       )}
     >
+      <MetaTags />
       <div>
         {status == "idle" && <LandingScreen />}
         {status == "active" && (
           <>
             <h1
               className={classNames(
-                "text-2xl text-slate-800 font-medium mt-2",
-                montserrat.className
+                "text-2xl text-slate-800 font-bold mt-2",
+                inter.className
               )}
             >
               Recording
@@ -138,8 +141,8 @@ export default function Home() {
             <>
               <h1
                 className={classNames(
-                  "text-2xl text-slate-800 font-medium mt-2",
-                  montserrat.className
+                  "text-2xl text-slate-800 font-bold mt-2",
+                  inter.className
                 )}
               >
                 Transcribing&hellip;
@@ -153,8 +156,8 @@ export default function Home() {
             <div className="relative h-[100dvh] pb-16">
               <div
                 className={classNames(
-                  "text-2xl font-medium text-slate-800",
-                  montserrat.className
+                  "text-2xl font-bold text-slate-800",
+                  inter.className
                 )}
               >
                 {title}
@@ -180,7 +183,7 @@ export default function Home() {
               {showOriginal && <div>{original}</div>}
 
               <button
-                className="w-full py-2 px-4 bg-white rounded-md border border-slate-500 text-slate-500 fixed bottom-10"
+                className="w-[calc(100%-2rem)] py-2 px-4 bg-white rounded-md border border-slate-500 text-slate-500 fixed bottom-10"
                 onClick={handleReset}
               >
                 Record again
@@ -190,7 +193,7 @@ export default function Home() {
       </div>
 
       {text == "" && (
-        <div className="mx-auto mb-12">
+        <div className="fixed bottom-12 left-1/2 -translate-x-1/2">
           <RecordingButton
             key={recordingButtonKey}
             onStartRecording={handleStartRecording}
@@ -207,47 +210,133 @@ function LandingScreen() {
     <>
       <h1
         className={classNames(
-          "text-2xl text-slate-700 font-medium mt-2",
-          montserrat.className
+          "text-2xl text-slate-700 font-bold mt-2 line",
+          inter.className
         )}
       >
-        Capture Ideas Effortlessly
+        Capture your ideas, effortlessly
       </h1>
-      <p className="mt-4 text-slate-500 leading-relaxed">
-        Use Mic.ai to{" "}
-        <span className="font-semibold text-slate-600">
-          transform your audio notes into crystal clear summaries
-        </span>{" "}
-        that bring clarity and focus to your thoughts.
+      <p className="mt-4 text-slate-500 leading-relaxed text-xl">
+        Transform your audio notes into crystal clear summaries.
       </p>
-      <div className="flex mt-8 gap-x-3">
+      <div className="flex mt-16 gap-x-3">
         <div className="rounded-full bg-slate-50 w-10 h-10 grid place-items-center">
-          <MicrophoneIcon className="h-6 w-6 text-slate-500" />
+          <MicrophoneIcon className="h-6 w-6 text-slate-700" />
         </div>
         <div className="flex-1">
-          <h3 className="font-semibold text-slate-600 mt-2">
+          <h3
+            className={classNames(
+              "font-semibold text-lg text-slate-800 mt-1.5",
+              inter.className
+            )}
+          >
             Find clarity in the chaos
           </h3>
-          <p className="mt-3 text-slate-500 leading-relaxed">
-            Hit record and ramble. Mic.ai cuts through the clutter and zeroes in
-            on the core of your ideas.
+          <p
+            className={classNames(
+              "mt-3 text-slate-500 leading-relaxed",
+              roboto.className
+            )}
+          >
+            Just hit record and ramble. Let us cut through the clutter and zero
+            in on the core of your ideas.
           </p>
         </div>
       </div>
-      <div className="flex mt-8 gap-x-3">
+      <div className="flex mt-12 gap-x-3">
         <div className="rounded-full bg-slate-50 w-10 h-10 grid place-items-center">
-          <RocketLaunchIcon className="h-6 w-6 text-slate-500" />
+          <RocketLaunchIcon className="h-6 w-6 text-slate-700" />
         </div>
         <div className="flex-1">
-          <h3 className="font-semibold text-slate-600 mt-2">
+          <h3
+            className={classNames(
+              "font-semibold text-lg text-slate-800 mt-1.5",
+              inter.className
+            )}
+          >
             AI-Powered Summaries
           </h3>
-          <p className="mt-3 text-slate-500 leading-relaxed">
+          <p
+            className={classNames(
+              "mt-3 text-slate-500 leading-relaxed",
+              roboto.className
+            )}
+          >
             Embrace the future with concise, effortless transcriptions thanks to
             GPT-powered AI
           </p>
         </div>
       </div>
+      <div className="flex mt-12 gap-x-3">
+        <div className="rounded-full bg-slate-50 w-10 h-10 grid place-items-center">
+          <LockClosedIcon className="h-6 w-6 text-slate-700" />
+        </div>
+        <div className="flex-1">
+          <h3
+            className={classNames(
+              "font-semibold text-lg text-slate-800 mt-1.5",
+              inter.className
+            )}
+          >
+            Secure &amp; Private
+          </h3>
+          <p
+            className={classNames(
+              "mt-3 text-slate-500 leading-relaxed",
+              roboto.className
+            )}
+          >
+            Trust your ideas are safe with our robust privacy measures,
+            protecting your audio and summaries.
+          </p>
+        </div>
+      </div>
+      <div className="h-32" />
     </>
+  );
+}
+
+function MetaTags() {
+  return (
+    <Head>
+      <head>
+        <title>Capture Ideas Effortlessly with Mic.ai</title>
+        <meta
+          name="description"
+          content="Transform your audio notes into concise summaries with Mic.ai - streamlining your thought process and enabling better decision-making."
+        />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <meta
+          property="og:title"
+          content="Capture Ideas Effortlessly with Mic.ai"
+        />
+        <meta
+          property="og:description"
+          content="Transform your audio notes into concise summaries with Mic.ai - streamlining your thought process and enabling better decision-making."
+        />
+        <meta
+          property="og:image"
+          content="https://mic.ai/path/to/your/og-image.jpg"
+        />
+        <meta property="og:url" content="https://mic.ai" />
+        <meta property="og:type" content="website" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Capture Ideas Effortlessly with Mic.ai"
+        />
+        <meta
+          name="twitter:description"
+          content="Transform your audio notes into concise summaries with Mic.ai - streamlining your thought process and enabling better decision-making."
+        />
+        <meta
+          name="twitter:image"
+          content="https://mic.ai/path/to/your/twitter-image.jpg"
+        />
+      </head>
+    </Head>
   );
 }

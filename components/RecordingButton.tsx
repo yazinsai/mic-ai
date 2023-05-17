@@ -56,7 +56,7 @@ export const RecordingButton: FC<Props> = ({
       onClick={toggleRecording}
       disabled={status == "busy"}
       className={classNames(
-        `w-20 h-20 rounded-full grid place-items-center ${
+        `w-20 h-20 rounded-full grid place-items-center shadow-2xl ${
           status == "active" ? "bg-red-500" : "bg-violet-500"
         } transition-colors duration-200 ease-in-out focus:outline-none`,
         status == "active" ? "pulsating" : ""

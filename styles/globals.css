@@ -45,3 +45,16 @@
     transform: rotate(360deg);
   }
 }
+
+.line {
+  position: relative;
+}
+
+.line::before {
+  content: "";
+  width: 5px;
+  height: 100%;
+  position: absolute;
+  left: -16px;
+  background-color: #273243;
+}
