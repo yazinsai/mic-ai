@@ -3,6 +3,8 @@ import { Montserrat, Inter } from "next/font/google";
 import { RecordingButton } from "@/components/RecordingButton";
 import { Timer } from "@/components/Timer";
 import { Upload } from "upload-js";
+import { ClipboardIcon } from "@heroicons/react/20/solid";
+import copy from "copy-text-to-clipboard";
 
 const montserrat = Montserrat({ weight: "500", subsets: ["latin"] });
 const inter = Inter({ subsets: ["latin"] });
@@ -25,6 +27,8 @@ export default function Home() {
 
   const [title, setTitle] = React.useState("");
   const [summary, setSummary] = React.useState("");
+  const [showOriginal, setShowOriginal] = React.useState(false);
+  const [doneTyping, setDoneTyping] = React.useState(false);
 
   React.useEffect(() => {
     const titleRegex = /Title:\s(.+?)(?=\n)/;
@@ -86,12 +90,26 @@ export default function Home() {
       const chunkValue = decoder.decode(value);
       setText((prev) => prev + chunkValue);
     }
+
+    setDoneTyping(true);
+  }
+
+  function handleCopy() {
+    copy(summary);
+    alert("Copied to clipboard!");
+  }
+
+  function handleReset() {
+    setStatus("idle");
+    setText("");
+    setDoneTyping(false);
+    setShowOriginal(false);
   }
 
   return (
     <main
       className={classNames(
-        "p-4 flex flex-col justify-between h-screen overflow-y-hidden",
+        "p-4 flex flex-col justify-between h-screen",
         inter.className
       )}
     >
@@ -125,35 +143,60 @@ export default function Home() {
             <Timer onCancel={handleCancelRecording} />
           </>
         )}
-        {status == "busy" && text == "" ? (
-          <>
-            <h1
-              className={classNames(
-                "text-2xl text-slate-800 font-medium mt-2",
-                montserrat.className
+        {status == "busy" &&
+          (text == "" ? (
+            <>
+              <h1
+                className={classNames(
+                  "text-2xl text-slate-800 font-medium mt-2",
+                  montserrat.className
+                )}
+              >
+                Transcribing&hellip;
+              </h1>
+              <p className="mt-4 text-slate-500 text-lg font-light">
+                This can take up to a minute, depending on how long you’ve been
+                rambling.
+              </p>
+            </>
+          ) : (
+            <div className="relative h-screen pb-16">
+              <div
+                className={classNames(
+                  "text-2xl font-medium text-slate-800",
+                  montserrat.className
+                )}
+              >
+                {title}
+              </div>
+              <p className="mt-4 text-slate-500">{summary}</p>
+              {doneTyping && (
+                <div className="flex gap-x-3 mt-4 mb-3">
+                  <button
+                    className="rounded-full bg-slate-100 text-slate-500 px-4 py-1.5 flex items-center gap-x-1"
+                    onClick={handleCopy}
+                  >
+                    <ClipboardIcon className="w-4 h-4 text-slate-400" />
+                    Copy
+                  </button>
+                  <button
+                    className="rounded-full bg-slate-100 text-slate-500 px-4 py-1.5"
+                    onClick={() => setShowOriginal((p) => !p)}
+                  >
+                    Show original
+                  </button>
+                </div>
               )}
-            >
-              Transcribing&hellip;
-            </h1>
-            <p className="mt-4 text-slate-500 text-lg font-light">
-              This can take up to a minute, depending on how long you’ve been
-              rambling.
-            </p>
-          </>
-        ) : (
-          <>
-            <div
-              className={classNames(
-                "text-2xl font-medium text-slate-800",
-                montserrat.className
-              )}
-            >
-              {title}
+              {showOriginal && <div>{original}</div>}
+
+              <button
+                className="w-full py-2 px-4 rounded-md border border-slate-500 text-slate-500 absolute bottom-10"
+                onClick={handleReset}
+              >
+                Record again
+              </button>
             </div>
-            <p className="mt-4 text-slate-500">{summary}</p>
-            <div>{original}</div>
-          </>
-        )}
+          ))}
       </div>
 
       {text == "" && (
