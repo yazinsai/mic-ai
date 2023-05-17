@@ -3,7 +3,11 @@ import { Montserrat, Inter } from "next/font/google";
 import { RecordingButton } from "@/components/RecordingButton";
 import { Timer } from "@/components/Timer";
 import { Upload } from "upload-js";
-import { ClipboardIcon } from "@heroicons/react/20/solid";
+import {
+  ClipboardIcon,
+  MicrophoneIcon,
+  RocketLaunchIcon,
+} from "@heroicons/react/20/solid";
 import copy from "copy-text-to-clipboard";
 
 const montserrat = Montserrat({ weight: "500", subsets: ["latin"] });
@@ -109,26 +113,12 @@ export default function Home() {
   return (
     <main
       className={classNames(
-        "p-4 flex flex-col justify-between h-[100dvh]",
+        "p-4 flex flex-col justify-between h-[100dvh] max-w-md mx-auto",
         inter.className
       )}
     >
       <div>
-        {status == "idle" && (
-          <>
-            <h1
-              className={classNames(
-                "text-2xl text-slate-800 font-medium mt-2",
-                montserrat.className
-              )}
-            >
-              New Note
-            </h1>
-            <p className="mt-4 text-slate-500 text-lg font-light">
-              Click the microphone below to begin recording your note.
-            </p>
-          </>
-        )}
+        {status == "idle" && <LandingScreen />}
         {status == "active" && (
           <>
             <h1
@@ -209,5 +199,55 @@ export default function Home() {
         </div>
       )}
     </main>
+  );
+}
+
+function LandingScreen() {
+  return (
+    <>
+      <h1
+        className={classNames(
+          "text-2xl text-slate-700 font-medium mt-2",
+          montserrat.className
+        )}
+      >
+        Capture Ideas Effortlessly
+      </h1>
+      <p className="mt-4 text-slate-500 leading-relaxed">
+        Use Mic.ai to{" "}
+        <span className="font-semibold text-slate-600">
+          transform your audio notes into crystal clear summaries
+        </span>{" "}
+        that bring clarity and focus to your thoughts.
+      </p>
+      <div className="flex mt-8 gap-x-3">
+        <div className="rounded-full bg-slate-50 w-10 h-10 grid place-items-center">
+          <MicrophoneIcon className="h-6 w-6 text-slate-500" />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-semibold text-slate-600 mt-2">
+            Find clarity in the chaos
+          </h3>
+          <p className="mt-3 text-slate-500 leading-relaxed">
+            Hit record and ramble. Mic.ai cuts through the clutter and zeroes in
+            on the core of your ideas.
+          </p>
+        </div>
+      </div>
+      <div className="flex mt-8 gap-x-3">
+        <div className="rounded-full bg-slate-50 w-10 h-10 grid place-items-center">
+          <RocketLaunchIcon className="h-6 w-6 text-slate-500" />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-semibold text-slate-600 mt-2">
+            AI-Powered Summaries
+          </h3>
+          <p className="mt-3 text-slate-500 leading-relaxed">
+            Embrace the future with concise, effortless transcriptions thanks to
+            GPT-powered AI
+          </p>
+        </div>
+      </div>
+    </>
   );
 }
