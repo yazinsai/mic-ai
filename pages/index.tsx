@@ -109,7 +109,7 @@ export default function Home() {
   return (
     <main
       className={classNames(
-        "p-4 flex flex-col justify-between h-screen",
+        "p-4 flex flex-col justify-between h-[100dvh]",
         inter.className
       )}
     >
@@ -160,7 +160,7 @@ export default function Home() {
               </p>
             </>
           ) : (
-            <div className="relative h-screen pb-16">
+            <div className="relative h-[100dvh] pb-16">
               <div
                 className={classNames(
                   "text-2xl font-medium text-slate-800",
@@ -190,7 +190,7 @@ export default function Home() {
               {showOriginal && <div>{original}</div>}
 
               <button
-                className="w-full py-2 px-4 rounded-md border border-slate-500 text-slate-500 absolute bottom-10"
+                className="w-full py-2 px-4 bg-white rounded-md border border-slate-500 text-slate-500 fixed bottom-10"
                 onClick={handleReset}
               >
                 Record again
