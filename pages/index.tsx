@@ -11,6 +11,7 @@ import {
 } from "@heroicons/react/20/solid";
 import copy from "copy-text-to-clipboard";
 import Head from "next/head";
+import analytics from "@/lib/analytics";
 
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 const inter = Inter({ weight: "700", subsets: ["latin"] });
@@ -74,11 +75,13 @@ export default function Home() {
       body: JSON.stringify({ transcription }),
     });
     handleStream(stream);
+    analytics.track("summaryGenerated");
   }
 
   async function handleCancelRecording() {
     setStatus("idle");
     setRecordingButtonKey((prev) => prev + 1); // recreate the recording button to terminate media stream
+    analytics.track("recordingCancelled");
   }
 
   async function handleStream(stream: any) {
@@ -103,6 +106,7 @@ export default function Home() {
   function handleCopy() {
     copy(summary);
     alert("Copied to clipboard!");
+    analytics.track("summaryCopied");
   }
 
   function handleReset() {
@@ -110,6 +114,7 @@ export default function Home() {
     setText("");
     setDoneTyping(false);
     setShowOriginal(false);
+    analytics.track("reset");
   }
 
   return (
