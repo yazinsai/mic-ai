@@ -1,38 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mic.AI - Audio Summarizer
+
+Mic.AI is an intuitive audio-to-summary tool designed to help you effortlessly capture audio notes and process them into clear, concise summaries. Ideal for brainstorming sessions, meetings, lectures, and more, Mic.AI harnesses the power of AI to streamline your thought process and enable better decision-making.
+
+![Mic.AI screenshot](./screenshot.png)
+
+## Features
+
+- **Intuitive Audio Recording**: Capture your audio notes with ease and efficiency.
+- **AI-Powered Summarizations**: Transform your audio into digestible summaries in just a few clicks.
+- **Clarity and Focus**: Extract key insights and core ideas from your audio to enhance productivity.
+- **Versatile Use-Cases**: Perfect for students, professionals, and creatives to summarize lectures, meetings, or quick idea jots.
+- **Secure and Private**: Robust privacy measures ensure your ideas and data are protected.
+- **Easy Accessibility & Sharing**: Access your audio notes and summaries from any device and share them with others.
 
 ## Getting Started
 
-First, run the development server:
+Follow these steps to set up and run the Mic.AI application locally.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js (version 12.x or higher recommended)
+- Yarn or npm (package manager)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. Clone the repo
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+   ```
+   git clone https://github.com/yazinsai/mic-ai
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. Navigate to the project directory
 
-## Learn More
+   ```
+   cd mic-ai
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Install dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```
+   yarn install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   or
 
-## Deploy on Vercel
+   ```
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Run the development server
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```
+   yarn dev
+   ```
+
+   or
+
+   ```
+   npm run dev
+   ```
+
+5. Open your browser and navigate to `http://localhost:3000`. The app should now be running locally.
+
+## Usage
+
+To start using Mic.AI, simply click the recording button to capture your audio notes. Once the recording is complete, Mic.AI will automatically process the audio and generate a concise summary. You can then review, edit, and share your summary as needed.
+
+## Contributing
+
+Contributions are welcome and greatly appreciated! To get involved, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/my-feature`).
+3. Make your changes and commit them (`git commit -m 'Add my feature'`).
+4. Push the branch to your fork (`git push origin feature/my-feature`).
+5. Create a new pull request.
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+[Yazin] - hi@yazin.ai
+
+Project Link: https://github.com/yazinsai/mic-ai
