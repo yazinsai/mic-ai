@@ -9,7 +9,6 @@ import {
   RocketLaunchIcon,
   LockClosedIcon,
 } from "@heroicons/react/20/solid";
-import copy from "copy-text-to-clipboard";
 import Head from "next/head";
 import analytics from "@/lib/analytics";
 
@@ -49,6 +48,19 @@ function getAudioDuration(audioBlob: Blob): Promise<number> {
 
     fileReader.readAsArrayBuffer(audioBlob);
   });
+}
+
+function copy(contents: string) {
+  navigator.clipboard.writeText(contents);
+
+  // Fallback to creating a fake `textarea` and set its contents
+  const storage = document.createElement("textarea");
+  storage.value = contents;
+  document.body.appendChild(storage);
+  storage.select();
+  storage.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(storage);
 }
 
 export default function Home() {
