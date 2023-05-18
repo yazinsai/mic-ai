@@ -318,7 +318,7 @@ function MetaTags() {
         />
         <meta
           property="og:image"
-          content="https://mic-ai.vercel.app/meta.png"
+          content="https://mic-ai.vercel.app/meta.jpeg"
         />
         <meta property="og:url" content="https://mic-ai.vercel.app" />
         <meta property="og:type" content="website" />
@@ -334,7 +334,7 @@ function MetaTags() {
         />
         <meta
           name="twitter:image"
-          content="https://mic-ai.vercel.app/meta.png"
+          content="https://mic-ai.vercel.app/meta.jpeg"
         />
       </head>
     </Head>
