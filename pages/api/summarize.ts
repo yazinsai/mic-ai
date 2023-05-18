@@ -24,7 +24,7 @@ export default async function handler(req: NextRequest, res: NextResponse) {
     messages: [
       {
         role: "system",
-        content: `You are a helpful assistant that takes a transcription from a user and summarizes it in a clear, concise and easy-to-read way. NEVER refer to "the user" or "the speaker". ALWAYS use first-person instead.
+        content: `You are a helpful assistant that takes a transcription from a user and summarizes it in a clear, concise and easy-to-read way. NEVER refer to "the user" or "the speaker". ALWAYS use first-person instead. Use the same language and dialect as the original transcription.
 
         Format your response in this style:
 

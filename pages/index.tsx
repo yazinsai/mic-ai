@@ -166,7 +166,7 @@ export default function Home() {
                 inter.className
               )}
             >
-              Recording
+              Recording&hellip;
             </h1>
             <div className="h-6"></div>
             <Timer onCancel={handleCancelRecording} />
