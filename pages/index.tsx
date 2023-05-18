@@ -7,7 +7,7 @@ import {
   ClipboardIcon,
   MicrophoneIcon,
   RocketLaunchIcon,
-  LockClosedIcon,
+  CodeBracketSquareIcon,
 } from "@heroicons/react/20/solid";
 import Head from "next/head";
 import analytics from "@/lib/analytics";
@@ -317,7 +317,7 @@ function LandingScreen() {
       </div>
       <div className="flex mt-12 gap-x-3">
         <div className="rounded-full bg-slate-50 w-10 h-10 grid place-items-center">
-          <LockClosedIcon className="h-6 w-6 text-slate-700" />
+          <CodeBracketSquareIcon className="h-6 w-6 text-slate-700" />
         </div>
         <div className="flex-1">
           <h3
@@ -326,7 +326,7 @@ function LandingScreen() {
               inter.className
             )}
           >
-            Secure &amp; Private
+            100% Open Source
           </h3>
           <p
             className={classNames(
@@ -334,8 +334,16 @@ function LandingScreen() {
               roboto.className
             )}
           >
-            Trust your ideas are safe with our robust privacy measures,
-            protecting your audio and summaries.
+            Use the hosted service, or host it yourself. You'll find the full
+            source code on{" "}
+            <a
+              href="https://github.com/yazinsai/mic-ai"
+              className="underline"
+              target="_blank"
+            >
+              Github
+            </a>
+            .
           </p>
         </div>
       </div>
@@ -364,11 +372,8 @@ function MetaTags() {
           property="og:description"
           content="Transform your audio notes into concise summaries with Mic AI - streamlining your thought process and enabling better decision-making."
         />
-        <meta
-          property="og:image"
-          content="https://mic-ai.vercel.app/meta.jpeg"
-        />
-        <meta property="og:url" content="https://mic-ai.vercel.app" />
+        <meta property="og:image" content="https://mic.yazin.ai/meta.jpeg" />
+        <meta property="og:url" content="https://mic.yazin.ai" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -380,10 +385,7 @@ function MetaTags() {
           name="twitter:description"
           content="Transform your audio notes into concise summaries with Mic AI - streamlining your thought process and enabling better decision-making."
         />
-        <meta
-          name="twitter:image"
-          content="https://mic-ai.vercel.app/meta.jpeg"
-        />
+        <meta name="twitter:image" content="https://mic.yazin.ai/meta.jpeg" />
       </head>
     </Head>
   );
