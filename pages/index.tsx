@@ -24,6 +24,33 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
+function getAudioDuration(audioBlob: Blob): Promise<number> {
+  return new Promise((resolve, reject) => {
+    const audioContext = new AudioContext();
+    const fileReader = new FileReader();
+
+    fileReader.onloadend = () => {
+      const arrayBuffer = fileReader.result as ArrayBuffer;
+      audioContext.decodeAudioData(
+        arrayBuffer,
+        (audioBuffer) => {
+          const durationInSeconds = audioBuffer.duration;
+          resolve(durationInSeconds);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    };
+
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+
+    fileReader.readAsArrayBuffer(audioBlob);
+  });
+}
+
 export default function Home() {
   const [status, setStatus] = React.useState<"idle" | "active" | "busy">(
     "idle"
@@ -75,7 +102,11 @@ export default function Home() {
       body: JSON.stringify({ transcription }),
     });
     handleStream(stream);
-    analytics.track("summaryGenerated");
+
+    analytics.track("summaryGenerated", {
+      duration: await getAudioDuration(blob),
+      title,
+    });
   }
 
   async function handleCancelRecording() {
