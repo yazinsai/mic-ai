@@ -256,7 +256,7 @@ export default function Home() {
       </div>
 
       {text == "" && (
-        <div className="fixed bottom-12 left-1/2 -translate-x-1/2 grid gap-x-5">
+        <div className="fixed bottom-12 left-1/2 -translate-x-1/2 flex flex-row space-x-8 items-center">
           <RecordingButton
             key={recordingButtonKey}
             onStartRecording={handleStartRecording}
