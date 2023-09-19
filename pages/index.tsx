@@ -8,6 +8,7 @@ import {
   MicrophoneIcon,
   RocketLaunchIcon,
   CodeBracketSquareIcon,
+  ArrowUpTrayIcon
 } from "@heroicons/react/20/solid";
 import Head from "next/head";
 import analytics from "@/lib/analytics";
@@ -127,6 +128,18 @@ export default function Home() {
     analytics.track("recordingCancelled");
   }
 
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const blob = new Blob([reader.result as ArrayBuffer], { type: file.type });
+      handleFinishRecording(blob);
+    };
+    reader.readAsArrayBuffer(file);
+  };
+
   async function handleStream(stream: any) {
     const data = stream.body;
     if (!data) return;
@@ -201,7 +214,7 @@ export default function Home() {
               </p>
             </>
           ) : (
-            <div className="relative h-[100dvh] pb-16">
+            <div className="relative h-[100dvh]">
               <div
                 className={classNames(
                   "text-2xl font-bold text-slate-800",
@@ -210,9 +223,9 @@ export default function Home() {
               >
                 {title}
               </div>
-              <p className="mt-4 text-slate-500">{summary}</p>
+              <p className="mt-4 text-slate-500 pb-4">{summary}</p>
               {doneTyping && (
-                <div className="flex gap-x-3 mt-4 mb-3">
+                <div className="flex gap-x-3">
                   <button
                     className="rounded-full bg-slate-100 text-slate-500 px-4 py-1.5 flex items-center gap-x-1"
                     onClick={handleCopy}
@@ -230,6 +243,8 @@ export default function Home() {
               )}
               {showOriginal && <div>{original}</div>}
 
+              <div className="h-24"></div>
+
               <button
                 className="w-[calc(100%-2rem)] py-2 px-4 bg-white rounded-md border border-slate-500 text-slate-500 fixed bottom-10"
                 onClick={handleReset}
@@ -241,11 +256,23 @@ export default function Home() {
       </div>
 
       {text == "" && (
-        <div className="fixed bottom-12 left-1/2 -translate-x-1/2">
+        <div className="fixed bottom-12 left-1/2 -translate-x-1/2 grid gap-x-5">
           <RecordingButton
             key={recordingButtonKey}
             onStartRecording={handleStartRecording}
             onStopRecording={handleFinishRecording}
+          />
+
+          <label htmlFor="upload-button" className="rounded-full bg-slate-50 p-4">
+            <ArrowUpTrayIcon className="h-6 w-6 text-slate-600" />
+          </label>
+
+          <input
+            id="upload-button"
+            type="file"
+            accept="audio/*"
+            onChange={handleFileUpload}
+            className="hidden"
           />
         </div>
       )}
